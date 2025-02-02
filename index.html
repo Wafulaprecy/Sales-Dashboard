@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superstore Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="/static/style1.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>Superstore Sales Dashboard</h1>
+
+    <form method="POST">
+        <label for="year">Select Year:</label>
+        <select name="year" id="year">
+            {% for year in years %}
+            <option value="{{ year }}" {% if year == selected_year|int %}selected{% endif %}>{{ year }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="category">Select Category:</label>
+        <select name="category" id="category">
+            {% for category in categories %}
+            <option value="{{ category }}" {% if category == selected_category %}selected{% endif %}>{{ category }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Update</button>
+    </form>
+
+    <!-- Plotly Chart -->
+    <div id="chart"></div>
+
+    <!-- Render the Plotly chart -->
+    <script>
+        var graphJSON = { graphJSON};
+        Plotly.newPlot('chart', graphJSON.data, graphJSON.layout);
+    </script>
+</body>
+</html>
